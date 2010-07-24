@@ -1,0 +1,30 @@
+<!--
+
+Repository Targets
+
+-->
+<project name="Build-Repo" xmlns:ivy="antlib:fr.jayasoft.ivy.ant">
+
+  <!--
+    
+    repo.publish
+    
+  -->
+  <target name="repo.publish"
+          description="Publishes artifacts, jars and ivy files to the local repo.">
+        
+    <copy todir="${ivy.local.default.root}/${ivy.publisher}/${dist.artifact}/jars">
+      <fileset dir="${dist.dir}">
+        <include name="**/*.jar"/> 
+      </fileset>
+    </copy>
+ 
+    <copy todir="${ivy.local.default.root}/${ivy.publisher}/${dist.artifact}/ivys">
+      <fileset dir="${dist.dir}">       
+        <include name="**/ivy-*.xml"/>
+      </fileset>
+    </copy>     
+    
+  </target>
+  
+</project>

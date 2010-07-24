@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+  <!--
+  
+    Properties example
+    
+    Here we are using three different methods of setting literal properties
+    (strings, integers, floats, etc).  
+    
+    - The first sets them using the standard JavaBeans property method
+      set<PropertyName>().
+              
+    - The second sets properties though the constructor arguments.    
+ 
+    - The third is using Spring's PropertyPlaceHolderConfigurer.  You can use this
+      if you want to read properties from a file (a very common practice 
+      in Java development).  
+        
+
+  -->
+  
+  
+  <!-- Setters -->
+
+  <!-- 
+  Pretty straight forward, since we are using JavaBean properties, we can
+  just use the convention of setPropName -> propName. 
+  -->
+  
+  <bean id="unicornSetters" 
+        class="com.infinitemule.spring.container.properties.populating.Unicorn">
+    <property name="firstName"  value="Jimmy"/>
+    <property name="lastName"   value="Von Property Setter"/>
+    <property name="age"        value="47"/>
+    <property name="hornLength" value="16.48"/>
+    <property name="isForSale"  value="true"/>    
+  </bean>
+  
+
+
+  <!-- Constructor arguments -->
+  
+  <!-- 
+  Just place your properties in the order they are specified in
+  the constructor declaration.
+  -->
+
+  <bean id="unicornConstructor" 
+        class="com.infinitemule.spring.container.properties.populating.Unicorn">
+    <constructor-arg value="Beatrice"/>
+    <constructor-arg value="Constructormeier"/>
+    <constructor-arg value="54"/>
+    <constructor-arg value="22.38"/>
+    <constructor-arg value="false"/>    
+  </bean>
+
+
+
+  <!-- Properties file -->
+  
+  <!-- 
+  The easiest way to load properties is by placing the file in the
+  classpath of the application and use the "classpath:" prefix. 
+  -->
+
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations" value="classpath:properties/populating/unicorn.properties"/>
+  </bean>
+
+
+  <!-- 
+  You can then reference properties using the ${} notation.
+  -->
+
+  <bean id="unicornPropFile" 
+        class="com.infinitemule.spring.container.properties.populating.Unicorn">
+    <property name="firstName"  value="${firstName}"/>
+    <property name="lastName"   value="${lastName}"/>
+    <property name="age"        value="${age}"/>
+    <property name="hornLength" value="${hornLength}"/>
+    <property name="isForSale"  value="${isForSale}"/>    
+  </bean>
+
+</beans>

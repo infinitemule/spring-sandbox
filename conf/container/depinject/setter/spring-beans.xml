@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+  <!--
+  
+    Simple Dependency Injection example
+    
+      - We are instantiating the Java random number generator and injecting
+        it into the random service.  
+      
+      - You can switch generator implementations by uncommenting the Dilbert 
+        generator and commenting out the Java generator and you will not 
+        have to change your application code.
+                   
+  -->
+
+  <!-- -->
+  <bean id="randomNumberGenerator" 
+        class="com.infinitemule.spring.container.depinject.setter.JavaRandomNumberGenerator">
+  </bean>
+  
+   
+  <!--    
+  <bean id="randomNumberGenerator" 
+        class="com.infinitemule.spring.container.depinject.setter.DilbertRandomNumberGenerator">
+  </bean>
+  --> 
+  
+  
+  <bean id="randomService" 
+        class="com.infinitemule.spring.container.depinject.setter.RandomService">
+    <property name="randomNumberGenerator" ref="randomNumberGenerator"/>
+  </bean>
+  
+</beans>

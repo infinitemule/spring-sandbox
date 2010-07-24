@@ -1,0 +1,44 @@
+<!--
+
+Build File - Spring Sandbox
+
+-->
+<project name="Spring Sandbox" default="java.compile" xmlns:ivy="antlib:fr.jayasoft.ivy.ant">
+  
+
+  <!--
+   
+   PROPERTIES
+   
+  -->
+  <property environment="env"/>
+  <property file="./build/ant/prop/build.properties" />
+  <property file="${build.ant.dir}/prop/build-java.properties"/>
+  <property file="${build.ant.dir}/prop/build-ivy.properties"/> 
+  <property file="${ivy.root}/ivy.properties"/>
+
+
+  
+  <!--
+  
+  IMPORTS
+  
+  -->
+  <import file="${build.ant.dir}/build-depend.xml"/>
+  <import file="${build.ant.dir}/build-java.xml"/>
+  <import file="${build.ant.dir}/build-repo.xml"/>
+  
+  
+  <!--
+  
+  PATHS
+   
+  -->
+  <path id="classpath">
+    <fileset dir="${work.lib.dir}">
+      <include name="**/*.jar"/> 
+    </fileset>            
+  </path>
+
+  
+</project>

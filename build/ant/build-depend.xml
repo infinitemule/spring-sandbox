@@ -1,0 +1,54 @@
+<!--
+
+Dependancy Targets
+
+-->
+<project name="Build-Dependency" xmlns:ivy="antlib:fr.jayasoft.ivy.ant">
+    
+  <!--
+     
+  dep.clean
+  
+  -->
+  <target name="dep.clean" 
+          description="Deletes all dependencies">
+          
+    <delete dir="${lib.dir}">
+      <include name="**/*.jar"/>
+      <exclude name="**/.*"/> 
+    </delete>
+                   
+  </target>
+  
+  
+  
+  <!--
+     
+  dep.resolve
+  
+  -->
+  <target name="dep.resolve" 
+          description="Obtains and resolves all Java dependencies using Ivy.">
+    
+    <delete dir="${ivy.root}/.ivy/cache" />
+    <ivy:configure file="${ivy.conf}" />  
+    <ivy:resolve file="${ivy.dep.file}" conf="*" />
+    <ivy:retrieve pattern="${lib.dir}/${ivy.lib.dev.pattern}" conf="*" />
+    <!--
+    <ivy:report conf="*" todir="${build.dir}/report"/>
+    -->
+    
+  </target>
+  
+  
+  <!--
+  
+  dep.refresh
+  
+  -->
+  <target name="dep.refresh"  depends="dep.clean, dep.resolve"
+          description="Deletes all dependencies and downloads a new copy of all dependencies.">
+          
+  </target>
+  
+</project> 

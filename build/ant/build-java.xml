@@ -1,0 +1,91 @@
+<!--
+
+Java Targets
+
+-->
+<project name="Build-Java" xmlns:ivy="antlib:fr.jayasoft.ivy.ant">
+	
+	<import file="build-depend.xml"/>
+  
+  <!--
+    
+    java.clean
+    
+  -->
+  <target name="java.clean" 
+          description="Deletes the build and dist directories">    
+    <delete dir="${work.dir}"/>       
+  </target>
+  
+  
+
+  <!--
+  
+    java.compile
+    
+  -->
+  <target name="java.compile" 
+          description="Copies the specified Java files to the build directory and compiles them.">
+    
+    <delete dir="${work.dir}"/>
+    <mkdir  dir="${work.dir}"/>
+    <mkdir  dir="${work.src.dir}"/>
+    <mkdir  dir="${work.classes.dir}"/>
+    
+    <copy todir="${work.src.dir}">
+      <fileset dir="${src.dir}"/>
+    </copy>    
+
+    <copy todir="${work.lib.dir}">
+      <fileset dir="${lib.dir}"/>
+    </copy>    
+
+    <javac deprecation="on"
+           destdir="${work.classes.dir}"
+           srcdir="${work.src.dir}">
+      <classpath refid="classpath"/>    	
+    </javac>
+      
+  </target>
+  
+  
+  
+  <!--
+  
+    java.jar 
+  
+  -->
+  <target name="java.jar" depends="dep.clean, dep.resolve, java.compile" 
+          description="Packages class files into a jar file and creates an Ivy file.">
+    
+    <delete dir="${dist.dir}"/>
+    <mkdir dir="${dist.dir}"/>
+        
+    <buildnumber file="${build.ant.dir}/prop/build.number"/>   
+    
+    <jar destfile="${dist.dir}/${dist.artifact}-${dist.version}.${build.number}.jar"
+         basedir="${work.classes.dir}"/>        
+      
+    <replaceregexp byline="true">
+      <fileset file="${ivy.dep.file}"/>
+      <regexp pattern="revision=&quot;[0-9|\.]+&quot;"/>
+      <substitution expression="revision=&quot;${dist.version}.${build.number}&quot;"/>   
+    </replaceregexp> 
+    
+    <tstamp>
+      <format property="build.timestamp" pattern="yyyyMMddHHmmss"  locale="en,US"/>
+    </tstamp>
+    
+    <replaceregexp byline="true">
+      <fileset file="${ivy.dep.file}"/>
+      <regexp pattern="publication=&quot;[0-9]+&quot;"/>
+      <substitution expression="publication=&quot;${build.timestamp}&quot;"/>   
+    </replaceregexp> 
+    
+    
+    <copy file="${ivy.dep.file}" 
+          tofile="${dist.dir}/ivy-${dist.version}.${build.number}.xml"/>
+      
+  </target> 
+  
+</project>

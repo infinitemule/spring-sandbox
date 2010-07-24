@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="http://ivyrep.jayasoft.org/ivy-doc.xsl"?>
+<ivy-module version="1.0">
+    <info
+        organisation="infinitemule"
+              module="spring-sandbox"
+            revision="0.0.1"
+              status="release"
+         publication="20100718000000">
+         
+        <!--
+        <description homepage=""></description>
+        -->
+        
+    </info>
+
+
+    <configurations>
+        <conf name="default" visibility="public"/>
+        <!--
+        <conf name="NEW CONFIG" visibility="public" extends="default"/>
+        -->
+    </configurations>
+
+
+    <publications>
+        <!--
+        <artifact name="NEW PUB" type="jar" ext="jar" conf="default"/>
+        -->
+    </publications>
+
+
+
+    <dependencies>
+    
+        <dependency org="springsource" 
+                   name="spring-core"  
+                    rev="3.0.3" 
+                   conf="default"/>
+                   
+        <dependency org="apache" 
+                   name="log4j" 
+                    rev="1.2+" 
+                   conf="default"/>
+                       
+        <dependency org="slf4j"  
+                   name="slf4j" 
+                    rev="1.5+" 
+                   conf="default->jcl104-over,log4j"/>
+                  
+    </dependencies>
+    
+</ivy-module>
