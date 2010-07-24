@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+  <!-- 
+  
+  Instantiate Examples
+        
+  -->
+
+  <bean id="puppyConstructor" 
+        class="com.infinitemule.spring.container.instantiate.Puppy">
+  </bean>
+  
+  
+  <bean id="puppyStaticInitializer" 
+        class="com.infinitemule.spring.container.instantiate.Puppy"
+        factory-method="createPuppy">
+  </bean>
+
+
+  <bean id="puppyLocator" 
+        class="com.infinitemule.spring.container.instantiate.PuppyLocator"/>
+
+  <bean id="puppyFactoryClass" 
+        class="com.infinitemule.spring.container.instantiate.Puppy"
+        factory-bean="puppyLocator"
+        factory-method="locatePuppy">
+  </bean>
+
+</beans>
