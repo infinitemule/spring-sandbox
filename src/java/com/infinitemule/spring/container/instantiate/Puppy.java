@@ -1,10 +1,15 @@
 /*
+ * Spring Sandbox - Instantiate
+ * 
+ * Puppy.java
  * 
  */
 package com.infinitemule.spring.container.instantiate;
 
+
 /**
- * 
+ * Simple class that has a static factory method with which
+ * Spring can use to instantiate our objects.
  */
 public class Puppy {
 
@@ -19,6 +24,7 @@ public class Puppy {
   }
 
   
+  
   /**
    * Static initializer
    */
@@ -26,6 +32,12 @@ public class Puppy {
     return new Puppy("Static Initializer");
   }
 
+
+  
+  /*
+   * Properties
+   */
+  
   public String getBredFrom() {
     return bredFrom;
   }

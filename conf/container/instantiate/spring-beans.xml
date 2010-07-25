@@ -7,19 +7,50 @@
   <!-- 
   
   Instantiate Examples
-        
+    
   -->
 
+  <!-- 
+  
+  Constructor
+  
+  - The vast majority of the time, you will be simply
+    instantiating your classes simply by calling its constructor.
+   
+  -->
+  
   <bean id="puppyConstructor" 
         class="com.infinitemule.spring.container.instantiate.Puppy">
   </bean>
+
+
+
+  <!-- 
   
+  Static initializer / factory method
+  
+    - If your class has a static creation method, you can call
+      it using the factory-method attribute 
+   
+  -->  
   
   <bean id="puppyStaticInitializer" 
         class="com.infinitemule.spring.container.instantiate.Puppy"
-        factory-method="createPuppy">
+        factory-method="createPuppy">        
   </bean>
 
+
+
+  <!-- 
+  
+  Factory class / locator 
+  
+    - If you have a separate factory class, first create a 
+      separate bean for that class.  Next, you can use the same
+      declaration as with the previous example, just add the factory-bean
+      attribute and use the factory class's id as the value.
+  
+  -->  
 
   <bean id="puppyLocator" 
         class="com.infinitemule.spring.container.instantiate.PuppyLocator"/>
