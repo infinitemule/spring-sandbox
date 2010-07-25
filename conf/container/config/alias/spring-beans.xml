@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+  <!-- 
+  
+  Alias
+    
+    - You can set an alias for a bean by using the alias tag.  You will
+      probably never come across this although it might be beneficial if
+      you have a very large system with multiple files that may have
+      bean name clashes.
+          
+  -->
+  
+  <!-- 
+  Some people call him Fatso, some people call him Keyboard Cat, 
+  and Spring doesn't care either way.
+  -->
+  
+  <alias name="youtubeCat" alias="keyboardCat"/>
+  <alias name="youtubeCat" alias="fatso"/>
+
+  <bean id="youtubeCat" 
+        class="com.infinitemule.spring.container.config.alias.KeyboardCat">
+  </bean>
+
+
+</beans>
+ 
