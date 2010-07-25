@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+  <!-- 
+  
+  Constructor Example
+  
+    - Injecting dependencies using a class's constructor is very straight forward, just
+      use the constructor-arg tag inside of your bean.
+      
+    - If you want to know more about the advantages and disadvantages of using constructor
+      injection vs. setter injection, consult the Spring documentation and the web.
+            
+  -->
+
+  <bean id="petDog" 
+        class="com.infinitemule.spring.container.depinject.constructor.Dog">
+  </bean>
+
+  <bean id="petCat" 
+        class="com.infinitemule.spring.container.depinject.constructor.Cat">
+  </bean>
+
+
+  <!-- 
+  Concise form
+  
+    - The easiest way to do constructor injection is to list the
+      arguments in the same order as they are defined in the class's
+      constructor.  Here we use ref instead of value to reference
+      other beans in the config file.
+  -->
+
+  <bean id="hoomanConcise" 
+        class="com.infinitemule.spring.container.depinject.constructor.Person">
+    <constructor-arg value="Walter"/>
+    <constructor-arg value="Listargs"/>
+    <constructor-arg value="57"/>
+    <constructor-arg ref="petDog"/>
+    <constructor-arg ref="petCat"/>
+  </bean>
+
+
+
+  <!-- 
+  Indexed form
+  
+    - Spring allows you to change the order by specifying
+      an index.  I have never seen this used, as keeping them
+      in order make much more sense but it's available.
+    
+  -->
+
+  <bean id="hoomanIndexed" 
+        class="com.infinitemule.spring.container.depinject.constructor.Person">
+    <constructor-arg index="4" ref="petCat"/>
+    <constructor-arg index="0" value="Jeffery"/>
+    <constructor-arg index="2" value="53"/>    
+    <constructor-arg index="3" ref="petDog"/>
+    <constructor-arg index="1" value="Indexed"/>    
+  </bean>
+  
+  
+</beans>
