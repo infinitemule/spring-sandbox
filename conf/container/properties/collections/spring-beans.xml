@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+  <!--
+  
+    Collection Properties example
+    
+    You can add values to collection typed properties by using collection
+    tags:
+    
+    - List Property
+      Surround your values or bean references with the list tag.
+      
+    - Set Property
+      Surround your values or bean references with the set tag.
+
+    - Map Property
+      Surround your values or bean references with the map tag 
+      and use the entry tags.
+
+
+  -->
+    
+  <bean id="colorPalette" 
+        class="com.infinitemule.spring.container.properties.collections.ColorPalette">
+
+    <property name="colorList">
+      <list>
+        <ref bean="red"/>
+        <ref bean="green"/>
+        <ref bean="blue"/>        
+      </list>      
+    </property>
+
+    <property name="colorSet">
+      <set>
+        <value>red</value>
+        <value>green</value>
+        <value>blue</value>
+      </set>      
+    </property>
+    
+    <property name="colorMap">
+      <map>
+        <entry key="lightBlue"  value="#ddeeff"/>
+        <entry key="mediumBlue" value="#337733"/>
+        <entry key="darkBlue"   value="#111133"/>        
+      </map>      
+    </property>    
+    
+  </bean>
+  
+  
+  <!-- 
+    Color Beans
+  
+    - We are using these to show how to add bean references
+      to collection properties. 
+  -->
+  
+  <bean id="red" class="java.awt.Color">
+    <constructor-arg value="255" type="int"/>
+    <constructor-arg value="0"   type="int"/>
+    <constructor-arg value="0"   type="int"/>    
+  </bean>
+
+  <bean id="green" class="java.awt.Color">
+    <constructor-arg value="0"   type="int"/>
+    <constructor-arg value="255" type="int"/>
+    <constructor-arg value="0"   type="int"/>    
+  </bean>
+
+  <bean id="blue" class="java.awt.Color">
+    <constructor-arg value="0"   type="int"/>
+    <constructor-arg value="0"   type="int"/>
+    <constructor-arg value="255" type="int"/>    
+  </bean>
+  
+</beans>
